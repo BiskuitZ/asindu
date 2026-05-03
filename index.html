@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASINDU • Engineering Consultant | Desain 3D & Teknik Sipil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=Inter:wght@300;400;500&amp;display=swap');
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-serif {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .luxury-gradient {
+            background: linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 100%);
+        }
+
+        .section-padding {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        .project-card {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-16px);
+            box-shadow: 0 30px 70px -15px rgb(0 0 0 / 0.5);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.12);
+        }
+
+        .project-card .overlay {
+            transition: all 0.4s ease;
+        }
+        
+        .project-card:hover .overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background: linear-gradient(to right, #C9A962, #E8D5A3);
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .gold-accent {
+            color: #C9A962;
+        }
+
+        .modal {
+            animation: modalPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalPop {
+            from {
+                opacity: 0;
+                transform: scale(0.92) translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .nav-scrolled {
+            background-color: rgba(9, 9, 11, 0.96);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
+        }
+
+        .engineering-grid {
+            background-image: 
+                linear-gradient(rgba(201, 169, 98, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201, 169, 98, 0.06) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px) rotate(0.5deg);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .glow-gold {
+            box-shadow: 0 0 15px rgba(201, 169, 98, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 overflow-x-hidden">
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-zinc-950/90 backdrop-blur-xl border-b border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <img src="images/LOGO-ASINDU-TERBARU.png" alt="Asindu Engineering Consultant" class="h-11 md:h-12 w-auto">
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-9 text-sm font-medium tracking-wider">
+                    <a href="#proyek" class="nav-link hover:text-amber-400">PROYEK</a>
+                    <a href="#layanan" class="nav-link hover:text-amber-400">LAYANAN</a>
+                    <a href="#tentang" class="nav-link hover:text-amber-400">TENTANG</a>
+                    <a href="#kontak" class="nav-link hover:text-amber-400">KONTAK</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="flex items-center gap-x-4">
+                    <button onclick="showConsultModal()"
+                            class="hidden md:block px-7 py-3 text-sm font-semibold tracking-widest border border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-zinc-950 transition-all duration-300 rounded-full">
+                        KONSULTASI GRATIS
+                    </button>
+                    
+                    <button id="mobile-menu-btn" class="md:hidden w-11 h-11 flex items-center justify-center text-2xl text-amber-400">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-t border-white/10">
+            <div class="px-8 py-8 flex flex-col gap-y-5 text-lg font-medium">
+                <a href="#proyek" class="hover:text-amber-400">Proyek Unggulan</a>
+                <a href="#layanan" class="hover:text-amber-400">Layanan Kami</a>
+                <a href="#tentang" class="hover:text-amber-400">Tentang Asindu</a>
+                <a href="#kontak" class="hover:text-amber-400">Hubungi Kami</a>
+                <div class="pt-4 border-t border-white/10">
+                    <button onclick="showConsultModal(); document.getElementById('mobile-menu').classList.add('hidden');"
+                            class="w-full py-4 bg-amber-400 text-zinc-950 font-bold tracking-widest rounded-2xl">
+                        KONSULTASI GRATIS SEKARANG
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative min-h-[100dvh] flex items-center pt-16 overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" 
+             style="background-image: url('images/fasad-RUMAH-MAPANE.jpg')">
+            <div class="absolute inset-0 luxury-gradient"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(#C9A962_0.8px,transparent_1px)] bg-[length:4px_4px] opacity-20"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-screen-2xl mx-auto px-8 pt-12">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur px-5 py-2 rounded-full mb-6 border border-white/20">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span class="uppercase text-xs tracking-[3px] font-semibold">EST. 2017 • POSO, SULAWESI TENGAH</span>
+                </div>
+                
+                <h1 class="heading-serif text-[72px] md:text-[92px] leading-[0.9] tracking-[-5px] mb-6">
+                    MEWUJUDKAN<br>VISI ANDA<br>DALAM <span class="text-amber-400">3D</span>
+                </h1>
+                
+                <p class="max-w-lg text-2xl text-zinc-200 font-light tracking-tight mb-10">
+                    Spesialis visualisasi arsitektur &amp; perencanaan teknik sipil berkualitas tinggi.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="document.getElementById('proyek').scrollIntoView({ behavior: 'smooth' })"
+                            class="group px-10 py-5 bg-white text-zinc-950 font-semibold tracking-wider flex items-center justify-center gap-x-3 hover:bg-amber-400 transition-all text-sm rounded-2xl shadow-xl">
+                        <span>LIHAT PORTOFOLIO</span>
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </button>
+                    
+                    <button onclick="showConsultModal()"
+                            class="px-9 py-5 border-2 border-white/70 hover:bg-white/10 font-semibold tracking-wider flex items-center justify-center gap-x-3 text-sm rounded-2xl transition-all">
+                        <span>MULAI PROYEK ANDA</span>
+                    </button>
+                </div>
+                
+                <div class="mt-14 flex items-center gap-x-8 text-sm">
+                    <div class="flex -space-x-3">
+                        <div class="w-9 h-9 bg-zinc-700 rounded-full border-2 border-zinc-950 overflow-hidden"><img src="images/fasad-RUMAH-MAPANE.jpg" class="w-full h-full object-cover"></div>
+                        <div class="w-9 h-9 bg-zinc-700 rounded-full border-2 border-zinc-950 overflow-hidden"><img src="images/perspektif-kantor-lurah-kayamanya.jpg" class="w-full h-full object-cover"></div>
+                        <div class="w-9 h-9 bg-zinc-700 rounded-full border-2 border-zinc-950 overflow-hidden"><img src="images/PERSPEKTIF-KAWASAN-TRANSMIGRASI-2.png" class="w-full h-full object-cover"></div>
+                    </div>
+                    <div class="text-xs text-zinc-400">Dipercaya oleh <span class="text-amber-400 font-medium">150+</span> klien</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-1.5 text-xs tracking-[3px] opacity-70">
+            <span>SCROLL UNTUK MENJELAJAHI</span>
+            <i class="fas fa-chevron-down animate-bounce text-lg"></i>
+        </div>
+    </header>
+
+    <!-- STATS BAR -->
+    <div class="bg-zinc-900 border-b border-white/10 py-5">
+        <div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-y-6 text-center">
+            <div>
+                <div class="text-4xl font-semibold text-amber-400 stat-number">187</div>
+                <div class="text-xs tracking-widest text-zinc-400 mt-1">PROYEK SELESAI</div>
+            </div>
+            <div>
+                <div class="text-4xl font-semibold text-amber-400 stat-number">92</div>
+                <div class="text-xs tracking-widest text-zinc-400 mt-1">KLIEN PEMERINTAH &amp; SWASTA</div>
+            </div>
+            <div>
+                <div class="text-4xl font-semibold text-amber-400 stat-number">14</div>
+                <div class="text-xs tracking-widest text-zinc-400 mt-1">TAHUN PENGALAMAN</div>
+            </div>
+            <div>
+                <div class="text-4xl font-semibold text-amber-400 stat-number">5</div>
+                <div class="text-xs tracking-widest text-zinc-400 mt-1">PROVINSI TERCAKUP</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROYEK UNGGULAN -->
+    <section id="proyek" class="section-padding max-w-screen-2xl mx-auto px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <div class="uppercase tracking-[3.5px] text-amber-400 text-sm font-medium">PORTFOLIO KAMI</div>
+                <h2 class="heading-serif text-6xl tracking-tight mt-2">Proyek Unggulan</h2>
+            </div>
+            <a href="#" class="mt-4 md:mt-0 inline-flex items-center text-sm tracking-widest group text-amber-400">
+                LIHAT SEMUA PROYEK 
+                <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1.5 transition"></i>
+            </a>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Project 1: Jembatan -->
+            <div onclick="showProjectModal(0)" class="project-card group bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 cursor-pointer">
+                <div class="relative h-[280px]">
+                    <img src="images/PERSPEKTIF-JEMBATAN-17.2M-5.png" alt="Jembatan Beton 17.2 Meter" class="w-full h-full object-cover transition-transform duration-700">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    <div class="absolute top-5 right-5 bg-black/70 px-4 py-1 text-xs tracking-widest rounded-full border border-white/20">INFRASTRUKTUR</div>
+                </div>
+                <div class="p-7">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-semibold tracking-tight">Jembatan Beton 17.2M</h3>
+                            <p class="text-amber-400 text-sm mt-1">Kabupaten Poso • 2024</p>
+                        </div>
+                        <i class="fas fa-external-link-alt text-amber-400 mt-2 opacity-70 group-hover:opacity-100 transition"></i>
+                    </div>
+                    <p class="text-sm text-zinc-400 mt-4 line-clamp-2">Desain jembatan beton bertulang dengan panjang 17,2 meter menggunakan pendekatan estetika modern dan standar SNI.</p>
+                </div>
+            </div>
+            
+            <!-- Project 2: Kantor Lurah -->
+            <div onclick="showProjectModal(1)" class="project-card group bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 cursor-pointer">
+                <div class="relative h-[280px]">
+                    <img src="images/perspektif-kantor-lurah-kayamanya.jpg" alt="Kantor Lurah Kayamanya" class="w-full h-full object-cover transition-transform duration-700">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    <div class="absolute top-5 right-5 bg-black/70 px-4 py-1 text-xs tracking-widest rounded-full border border-white/20">BANGUNAN PUBLIK</div>
+                </div>
+                <div class="p-7">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-semibold tracking-tight">Kantor Lurah Kayamanya</h3>
+                            <p class="text-amber-400 text-sm mt-1">Kec. Poso Kota • 2025</p>
+                        </div>
+                        <i class="fas fa-external-link-alt text-amber-400 mt-2 opacity-70 group-hover:opacity-100 transition"></i>
+                    </div>
+                    <p class="text-sm text-zinc-400 mt-4 line-clamp-2">Gedung kantor pemerintahan minimalis modern dengan fasad bersih dan pencahayaan alami optimal.</p>
+                </div>
+            </div>
+            
+            <!-- Project 3: Rumah Mapane -->
+            <div onclick="showProjectModal(2)" class="project-card group bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 cursor-pointer">
+                <div class="relative h-[280px]">
+                    <img src="images/fasad-RUMAH-MAPANE.jpg" alt="Rumah Mapane" class="w-full h-full object-cover transition-transform duration-700">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    <div class="absolute top-5 right-5 bg-black/70 px-4 py-1 text-xs tracking-widest rounded-full border border-white/20">RESIDENSIAL</div>
+                </div>
+                <div class="p-7">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-semibold tracking-tight">Rumah Mapane</h3>
+                            <p class="text-amber-400 text-sm mt-1">Desain Custom • 2024</p>
+                        </div>
+                        <i class="fas fa-external-link-alt text-amber-400 mt-2 opacity-70 group-hover:opacity-100 transition"></i>
+                    </div>
+                    <p class="text-sm text-zinc-400 mt-4 line-clamp-2">Hunian minimalis modern dengan carport terintegrasi dan material finishing berkualitas tinggi.</p>
+                </div>
+            </div>
+            
+            <!-- Project 4: Tugu -->
+            <div onclick="showProjectModal(3)" class="project-card group bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 cursor-pointer">
+                <div class="relative h-[280px]">
+                    <img src="images/TAMAN-HUSNUL-2.png" alt="Tugu 0 Kilometer" class="w-full h-full object-cover transition-transform duration-700">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    <div class="absolute top-5 right-5 bg-black/70 px-4 py-1 text-xs tracking-widest rounded-full border border-white/20">LANDMARK</div>
+                </div>
+                <div class="p-7">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-semibold tracking-tight">Tugu 0 Kilometer</h3>
+                            <p class="text-amber-400 text-sm mt-1">Taman Husnul • 2023</p>
+                        </div>
+                        <i class="fas fa-external-link-alt text-amber-400 mt-2 opacity-70 group-hover:opacity-100 transition"></i>
+                    </div>
+                    <p class="text-sm text-zinc-400 mt-4 line-clamp-2">Monumen landmark ikonik dengan desain futuristik sebagai pintu gerbang kawasan strategis.</p>
+                </div>
+            </div>
+            
+            <!-- Project 5: Kawasan Transmigrasi -->
+            <div onclick="showProjectModal(4)" class="project-card group bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 cursor-pointer">
+                <div class="relative h-[280px]">
+                    <img src="images/PERSPEKTIF-KAWASAN-TRANSMIGRASI-2.png" alt="Kawasan Transmigrasi" class="w-full h-full object-cover transition-transform duration-700">
+                    <div class="overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    <div class="absolute top-5 right-5 bg-black/70 px-4 py-1 text-xs tracking-widest rounded-full border border-white/20">PERUMAHAN</div>
+                </div>
+                <div class="p-7">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-semibold tracking-tight">Kawasan Transmigrasi</h3>
+                            <p class="text-amber-400 text-sm mt-1">Masterplan • 2025</p>
+                        </div>
+                        <i class="fas fa-external-link-alt text-amber-400 mt-2 opacity-70 group-hover:opacity-100 transition"></i>
+                    </div>
+                    <p class="text-sm text-zinc-400 mt-4 line-clamp-2">Perencanaan kawasan hunian transmigrasi dengan konsep ramah lingkungan dan infrastruktur lengkap.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAYANAN KAMI -->
+    <section id="layanan" class="section-padding bg-zinc-900 border-y border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-14">
+                <div class="uppercase tracking-[3.5px] text-amber-400 text-sm font-medium">APA YANG KAMI TAWARKAN</div>
+                <h2 class="heading-serif text-5xl md:text-6xl tracking-tight mt-3">Layanan Profesional</h2>
+                <p class="max-w-md mx-auto mt-4 text-zinc-400">Dari konsep hingga visualisasi 3D fotorealistik dengan standar internasional.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <div class="service-card bg-zinc-950 p-8 rounded-3xl border border-white/10 group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-400/10 flex items-center justify-center mb-7 group-hover:bg-amber-400/20 transition">
+                        <i class="fas fa-cube text-3xl text-amber-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-semibold tracking-tight mb-3">Visualisasi 3D Fotorealistik</h4>
+                    <p class="text-zinc-400 text-[15px]">Rendering eksterior &amp; interior dengan pencahayaan, material, dan lingkungan yang akurat secara fisik.</p>
+                    <div class="mt-6 text-xs tracking-widest text-amber-400 flex items-center gap-x-2">MULAI DARI Rp 4,5 JT <i class="fas fa-arrow-right"></i></div>
+                </div>
+                
+                <div class="service-card bg-zinc-950 p-8 rounded-3xl border border-white/10 group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-400/10 flex items-center justify-center mb-7 group-hover:bg-amber-400/20 transition">
+                        <i class="fas fa-drafting-compass text-3xl text-amber-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-semibold tracking-tight mb-3">Desain Arsitektur &amp; Struktur</h4>
+                    <p class="text-zinc-400 text-[15px]">Perencanaan lengkap rumah, kantor, gedung publik, dan infrastruktur sesuai standar SNI &amp; regulasi setempat.</p>
+                    <div class="mt-6 text-xs tracking-widest text-amber-400 flex items-center gap-x-2">KONSULTASI GRATIS <i class="fas fa-arrow-right"></i></div>
+                </div>
+                
+                <div class="service-card bg-zinc-950 p-8 rounded-3xl border border-white/10 group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-400/10 flex items-center justify-center mb-7 group-hover:bg-amber-400/20 transition">
+                        <i class="fas fa-road text-3xl text-amber-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-semibold tracking-tight mb-3">Perencanaan Jembatan &amp; Infrastruktur</h4>
+                    <p class="text-zinc-400 text-[15px]">Desain jembatan, gorong-gorong, drainase, dan infrastruktur sipil dengan analisis struktural mendalam.</p>
+                    <div class="mt-6 text-xs tracking-widest text-amber-400 flex items-center gap-x-2">PROYEK PEMERINTAH &amp; SWASTA</div>
+                </div>
+                
+                <div class="service-card bg-zinc-950 p-8 rounded-3xl border border-white/10 group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-400/10 flex items-center justify-center mb-7 group-hover:bg-amber-400/20 transition">
+                        <i class="fas fa-map-marked-alt text-3xl text-amber-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-semibold tracking-tight mb-3">Masterplan Kawasan &amp; Perumahan</h4>
+                    <p class="text-zinc-400 text-[15px]">Perencanaan kawasan transmigrasi, perumahan, dan pengembangan lahan skala besar dengan pendekatan berkelanjutan.</p>
+                    <div class="mt-6 text-xs tracking-widest text-amber-400 flex items-center gap-x-2">MULAI DARI 25 HA</div>
+                </div>
+                
+                <div class="service-card bg-zinc-950 p-8 rounded-3xl border border-white/10 group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-400/10 flex items-center justify-center mb-7 group-hover:bg-amber-400/20 transition">
+                        <i class="fas fa-video text-3xl text-amber-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-semibold tracking-tight mb-3">Animasi Walkthrough &amp; VR</h4>
+                    <p class="text-zinc-400 text-[15px]">Video animasi 4K dan pengalaman virtual reality untuk presentasi proyek yang lebih meyakinkan.</p>
+                    <div class="mt-6 text-xs tracking-widest text-amber-400 flex items-center gap-x-2">DURASI 30–120 DETIK</div>
+                </div>
+                
+                <div class="service-card bg-zinc-950 p-8 rounded-3xl border border-white/10 group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-400/10 flex items-center justify-center mb-7 group-hover:bg-amber-400/20 transition">
+                        <i class="fas fa-file-signature text-3xl text-amber-400"></i>
+                    </div>
+                    <h4 class="text-2xl font-semibold tracking-tight mb-3">Konsultasi &amp; Pendampingan</h4>
+                    <p class="text-zinc-400 text-[15px]">Pendampingan teknis, review desain, dan bantuan perizinan IMB/PBG untuk seluruh proyek Anda.</p>
+                    <div class="mt-6 text-xs tracking-widest text-amber-400 flex items-center gap-x-2">TERSEDIA ONSITE &amp; ONLINE</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section id="tentang" class="section-padding max-w-screen-2xl mx-auto px-8">
+        <div class="grid md:grid-cols-12 gap-x-8 items-center">
+            <div class="md:col-span-7">
+                <div class="uppercase tracking-[3.5px] text-amber-400 text-sm font-medium">CERITA KAMI</div>
+                <h2 class="heading-serif text-5xl md:text-[56px] leading-none tracking-tight mt-3 mb-8">Dari Konsep<br>menjadi Kenyataan</h2>
+                
+                <div class="max-w-2xl text-[17px] text-zinc-300 space-y-6 leading-relaxed">
+                    <p><strong class="text-white">Asindu Engineering Consultant</strong> didirikan pada tahun 2017 di Poso, Sulawesi Tengah. Kami adalah tim multidisiplin yang terdiri dari arsitek, insinyur sipil, dan seniman visual 3D yang bersatu untuk menghadirkan solusi desain terbaik bagi pemerintah dan sektor swasta.</p>
+                    
+                    <p>Kami percaya bahwa setiap proyek adalah kesempatan untuk menciptakan sesuatu yang bermakna — baik itu jembatan yang menghubungkan komunitas, kantor pemerintahan yang melayani rakyat, maupun rumah impian yang menjadi tempat pulang.</p>
+                </div>
+                
+                <div class="mt-10 flex items-center gap-x-4">
+                    <div class="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-sm">Sertifikasi ISO 9001:2015</div>
+                    <div class="px-6 py-3 bg-white/5 border border-white/10 rounded-2xl text-sm">Anggota IAI &amp; HAKI</div>
+                </div>
+            </div>
+            
+            <div class="md:col-span-5 mt-12 md:mt-0 relative">
+                <div class="aspect-[4/3] bg-zinc-900 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                    <img src="images/fasad-RUMAH-MAPANE.jpg" class="w-full h-full object-cover" alt="Tim Asindu">
+                </div>
+                <div class="absolute -bottom-6 -right-6 bg-zinc-950 border border-white/10 p-6 rounded-3xl max-w-[230px]">
+                    <div class="flex items-center gap-x-4">
+                        <div class="text-5xl font-bold text-amber-400">14</div>
+                        <div class="text-sm leading-tight">Tahun<br>melayani<br>Indonesia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI -->
+    <section class="bg-zinc-900 border-y border-white/10 py-16">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-12">
+                <div class="text-amber-400 text-sm tracking-[3px]">APA KATA MEREKA</div>
+                <h3 class="text-4xl font-semibold tracking-tight mt-2">Klien Kami</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-zinc-950 p-8 rounded-3xl border border-white/10">
+                    <div class="flex gap-x-1 text-amber-400 mb-4">★★★★★</div>
+                    <p class="italic text-zinc-300">"Visualisasi 3D jembatan yang dibuat Asindu sangat membantu kami dalam presentasi ke Kementerian PUPR. Hasilnya melebihi ekspektasi."</p>
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <div class="w-10 h-10 bg-zinc-700 rounded-full"></div>
+                        <div>
+                            <div class="font-medium">Ir. Andi Wijaya, M.T.</div>
+                            <div class="text-xs text-zinc-500">Kepala Dinas PUPR Kab. Poso</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-zinc-950 p-8 rounded-3xl border border-white/10">
+                    <div class="flex gap-x-1 text-amber-400 mb-4">★★★★★</div>
+                    <p class="italic text-zinc-300">"Desain kantor lurah yang minimalis modern ini langsung disetujui Bupati. Proses revisi cepat dan komunikasi sangat profesional."</p>
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <div class="w-10 h-10 bg-zinc-700 rounded-full"></div>
+                        <div>
+                            <div class="font-medium">Hj. Siti Aminah, S.Sos</div>
+                            <div class="text-xs text-zinc-500">Lurah Kayamanya</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-zinc-950 p-8 rounded-3xl border border-white/10">
+                    <div class="flex gap-x-1 text-amber-400 mb-4">★★★★☆</div>
+                    <p class="italic text-zinc-300">"Masterplan kawasan transmigrasi yang dibuat sangat komprehensif. Kami bisa langsung ajukan ke Kementerian Desa."</p>
+                    <div class="mt-8 flex items-center gap-x-4">
+                        <div class="w-10 h-10 bg-zinc-700 rounded-full"></div>
+                        <div>
+                            <div class="font-medium">Drs. Muhammad Ridwan</div>
+                            <div class="text-xs text-zinc-500">Kepala Dinas Transmigrasi Sulteng</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <div class="max-w-screen-2xl mx-auto px-8 py-20 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="heading-serif text-5xl tracking-tight">Siap Mewujudkan<br>Proyek Impian Anda?</h2>
+            <p class="mt-5 text-xl text-zinc-400">Hubungi tim kami hari ini untuk konsultasi gratis dan penawaran khusus.</p>
+            
+            <button onclick="showConsultModal()"
+                    class="mt-9 mx-auto px-14 py-5 bg-gradient-to-r from-amber-400 to-yellow-500 text-zinc-950 font-extrabold tracking-[1.5px] text-sm rounded-2xl flex items-center gap-x-3 shadow-[0_10px_40px_-10px_rgb(201,169,98)] hover:brightness-105 transition">
+                <span>MULAI KONSULTASI GRATIS</span>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+            
+            <div class="mt-5 text-xs text-zinc-500">Respon dalam &lt; 2 jam • Senin–Jumat 08.00–17.00 WITA</div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black pt-16 pb-10 border-t border-white/10">
+        <div class="max-w-screen-2xl mx-auto px-8 grid md:grid-cols-12 gap-y-14">
+            <div class="md:col-span-5">
+                <div class="mb-6">
+                    <img src="images/LOGO-ASINDU-TERBARU.png" alt="Asindu Engineering Consultant" class="h-14 w-auto">
+                </div>
+                <div class="text-sm text-zinc-400 max-w-xs">Firma konsultan teknik sipil &amp; arsitektur yang mengkhususkan diri dalam visualisasi 3D presisi tinggi.</div>
+                
+                <div class="flex gap-x-5 mt-8 text-xl">
+                    <a href="#" class="hover:text-amber-400"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-amber-400"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="hover:text-amber-400"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-3 text-sm">
+                <div class="uppercase tracking-[2px] text-xs text-zinc-500 mb-5">NAVIGASI</div>
+                <div class="space-y-3 text-zinc-300">
+                    <a href="#proyek" class="block hover:text-amber-400">Proyek Unggulan</a>
+                    <a href="#layanan" class="block hover:text-amber-400">Layanan</a>
+                    <a href="#tentang" class="block hover:text-amber-400">Tentang Kami</a>
+                    <a href="#" class="block hover:text-amber-400">Blog &amp; Insight</a>
+                </div>
+            </div>
+            
+            <div class="md:col-span-4 text-sm">
+                <div class="uppercase tracking-[2px] text-xs text-zinc-500 mb-5">KANTOR PUSAT</div>
+                <div class="text-zinc-300">
+                    Jl. Trans Sulawesi No. 17<br>
+                    Kel. Kayamanya, Kec. Poso Kota<br>
+                    Kabupaten Poso, Sulawesi Tengah 94613<br><br>
+                    
+                    <a href="tel:+628114567890" class="hover:text-amber-400">+62 811-4567-890</a><br>
+                    <a href="mailto:hello@asindu.co.id" class="hover:text-amber-400">hello@asindu.co.id</a>
+                </div>
+                
+                <div class="mt-8 text-[10px] text-zinc-500">© 2026 Asindu Engineering Consultant. All Rights Reserved.<br>Website ini adalah demo frontend.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PROJECT DETAIL MODAL -->
+    <div id="project-modal" onclick="if (event.target.id === 'project-modal') hideProjectModal()" class="hidden fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 md:p-8">
+        <div onclick="event.stopImmediatePropagation()" class="modal bg-zinc-900 w-full max-w-5xl rounded-3xl overflow-hidden border border-white/10 max-h-[92vh] overflow-y-auto">
+            <div id="modal-content">
+                <!-- Dynamic content injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CONSULTATION MODAL -->
+    <div id="consult-modal" onclick="if (event.target.id === 'consult-modal') hideConsultModal()" class="hidden fixed inset-0 z-[110] bg-black/95 flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="modal bg-zinc-900 w-full max-w-lg rounded-3xl overflow-hidden border border-white/10">
+            <div class="px-8 pt-8 pb-5 border-b border-white/10 flex justify-between items-center">
+                <div>
+                    <div class="text-xs tracking-[3px] text-amber-400">FORMULIR KONSULTASI</div>
+                    <h3 class="text-3xl font-semibold tracking-tight">Mulai Proyek Anda</h3>
+                </div>
+                <button onclick="hideConsultModal()" class="text-4xl text-zinc-400 hover:text-white transition leading-none">&times;</button>
+            </div>
+            
+            <form id="consult-form" onsubmit="submitConsultation(event)" class="p-8 space-y-6">
+                <div class="grid grid-cols-2 gap-5">
+                    <div>
+                        <label class="text-xs tracking-widest text-zinc-400 block mb-1.5">NAMA LENGKAP</label>
+                        <input type="text" required class="w-full bg-zinc-950 border border-white/20 focus:border-amber-400 rounded-2xl px-5 py-3.5 text-sm outline-none placeholder:text-zinc-600" placeholder="Nama Anda">
+                    </div>
+                    <div>
+                        <label class="text-xs tracking-widest text-zinc-400 block mb-1.5">INSTANSI / PERUSAHAAN</label>
+                        <input type="text" class="w-full bg-zinc-950 border border-white/20 focus:border-amber-400 rounded-2xl px-5 py-3.5 text-sm outline-none placeholder:text-zinc-600" placeholder="Opsional">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="text-xs tracking-widest text-zinc-400 block mb-1.5">EMAIL &amp; WHATSAPP</label>
+                    <div class="grid grid-cols-2 gap-5">
+                        <input type="email" required class="bg-zinc-950 border border-white/20 focus:border-amber-400 rounded-2xl px-5 py-3.5 text-sm outline-none" placeholder="email@anda.com">
+                        <input type="tel" required class="bg-zinc-950 border border-white/20 focus:border-amber-400 rounded-2xl px-5 py-3.5 text-sm outline-none" placeholder="0812-3456-7890">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="text-xs tracking-widest text-zinc-400 block mb-1.5">JENIS PROYEK</label>
+                    <select class="w-full bg-zinc-950 border border-white/20 focus:border-amber-400 rounded-2xl px-5 py-3.5 text-sm outline-none">
+                        <option>Desain Rumah / Residensial</option>
+                        <option>Kantor &amp; Bangunan Publik</option>
+                        <option>Jembatan &amp; Infrastruktur</option>
+                        <option>Masterplan Perumahan / Kawasan</option>
+                        <option>Visualisasi 3D &amp; Animasi</option>
+                        <option>Lainnya (sebutkan di pesan)</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="text-xs tracking-widest text-zinc-400 block mb-1.5">DESKRIPSI SINGKAT PROYEK</label>
+                    <textarea rows="4" required class="w-full resize-y bg-zinc-950 border border-white/20 focus:border-amber-400 rounded-3xl px-5 py-4 text-sm outline-none placeholder:text-zinc-600" placeholder="Contoh: Saya ingin membuat desain rumah 2 lantai di lahan 300m² dengan konsep minimalis tropis..."></textarea>
+                </div>
+                
+                <button type="submit" class="w-full py-4 bg-amber-400 hover:bg-amber-500 text-zinc-950 font-extrabold tracking-widest text-sm transition rounded-2xl flex items-center justify-center gap-x-3 mt-2">
+                    <span>KIRIM PERMINTAAN KONSULTASI</span>
+                </button>
+                
+                <p class="text-center text-[10px] text-zinc-500">Data Anda akan dijaga kerahasiaannya. Tim kami akan menghubungi dalam 1x24 jam.</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind + Custom
+        function initTailwind() {
+            // Can add more config if needed
+        }
+        
+        // Navbar scroll
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                navbar.classList.toggle('nav-scrolled', window.scrollY > 60);
+            });
+            
+            // Mobile menu
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                const icon = btn.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+            
+            // Close on link click
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    btn.querySelector('i').classList.add('fa-bars');
+                    btn.querySelector('i').classList.remove('fa-times');
+                });
+            });
+        }
+        
+        // Project Data
+        const projects = [
+            {
+                id: 0,
+                title: "Jembatan Beton 17.2 Meter",
+                location: "Kabupaten Poso, Sulawesi Tengah",
+                year: "2024",
+                category: "Infrastruktur Jembatan",
+                image: "images/PERSPEKTIF-JEMBATAN-17.2M-5.png",
+                desc: "Proyek perencanaan dan visualisasi jembatan beton bertulang dengan bentang 17,2 meter. Desain mengadopsi pendekatan estetika modern dengan mempertimbangkan aspek hidrologi, beban lalu lintas, dan integrasi dengan lanskap sekitar. Visualisasi ini digunakan untuk presentasi ke pemerintah daerah dan masyarakat.",
+                specs: [
+                    "Panjang total: 17,2 m",
+                    "Lebar jalan: 6,0 m + trotoar 1,5 m × 2",
+                    "Tipe struktur: Balok beton bertulang",
+                    "Beban rencana: Kelas II (20 ton)",
+                    "Waktu penyelesaian desain: 6 minggu"
+                ],
+                client: "Dinas PUPR Kabupaten Poso"
+            },
+            {
+                id: 1,
+                title: "Kantor Lurah Kayamanya",
+                location: "Kecamatan Poso Kota, Sulawesi Tengah",
+                year: "2025",
+                category: "Bangunan Publik",
+                image: "images/perspektif-kantor-lurah-kayamanya.jpg",
+                desc: "Gedung kantor pemerintahan dengan konsep minimalis modern yang mengutamakan efisiensi ruang, pencahayaan alami, dan aksesibilitas. Fasad bersih dengan aksen warna biru sebagai identitas pemerintahan daerah. Proyek ini berhasil mendapat persetujuan langsung dari Bupati Poso.",
+                specs: [
+                    "Luas bangunan: 285 m²",
+                    "Jumlah lantai: 1 lantai + mezzanine",
+                    "Kapasitas: 35 orang",
+                    "Material: Beton ekspos + cat akrilik",
+                    "Sertifikasi: PBG (Persetujuan Bangunan Gedung)"
+                ],
+                client: "Pemerintah Kecamatan Poso Kota"
+            },
+            {
+                id: 2,
+                title: "Rumah Mapane",
+                location: "Desa Mapane, Kabupaten Poso",
+                year: "2024",
+                category: "Hunian Pribadi",
+                image: "images/fasad-RUMAH-MAPANE.jpg",
+                desc: "Desain rumah tinggal minimalis modern dengan carport terintegrasi dan taman depan yang asri. Konsep desain menggabungkan elemen tropis dengan garis-garis tegas dan material lokal berkualitas tinggi. Visualisasi ini membantu klien memahami proporsi dan suasana rumah sebelum pembangunan dimulai.",
+                specs: [
+                    "Luas tanah: 450 m²",
+                    "Luas bangunan: 168 m²",
+                    "Kamar tidur: 3 + 1 ruang kerja",
+                    "Konsep: Minimalis Tropis",
+                    "Estimasi biaya: Rp 1,85 Miliar"
+                ],
+                client: "Bpk. & Ibu. Hendra Wijaya"
+            },
+            {
+                id: 3,
+                title: "Tugu 0 Kilometer",
+                location: "Taman Husnul, Poso",
+                year: "2023",
+                category: "Monumen & Landmark",
+                image: "images/TAMAN-HUSNUL-2.png",
+                desc: "Monumen landmark berbentuk huruf 'O' raksasa sebagai simbol titik nol kilometer dari Poso ke berbagai arah. Desain futuristik dengan pencahayaan LED dinamis dan elemen air mancur interaktif. Menjadi ikon baru kawasan dan sering digunakan sebagai spot foto wisatawan.",
+                specs: [
+                    "Tinggi total: 8,4 meter",
+                    "Material utama: Stainless steel + acrylic",
+                    "Sistem pencahayaan: RGB LED programmable",
+                    "Area plaza: 420 m²",
+                    "Biaya pembangunan: Rp 1,2 Miliar"
+                ],
+                client: "Dinas Pariwisata Kabupaten Poso"
+            },
+            {
+                id: 4,
+                title: "Kawasan Transmigrasi Modern",
+                location: "Kecamatan Poso Pesisir, Sulteng",
+                year: "2025",
+                category: "Masterplan Perumahan",
+                image: "images/PERSPEKTIF-KAWASAN-TRANSMIGRASI-2.png",
+                desc: "Masterplan kawasan transmigrasi seluas 48 hektar dengan konsep 'Eco-Settlement'. Termasuk 320 unit rumah tipe 36/60, fasilitas umum, jalan lingkungan, sistem drainase terpadu, dan area pertanian terintegrasi. Visualisasi 3D ini digunakan untuk sosialisasi kepada calon transmigran dan presentasi ke Kementerian Desa.",
+                specs: [
+                    "Total luas: 48,7 hektar",
+                    "Jumlah unit hunian: 320 rumah",
+                    "Fasilitas: SD, Puskesmas, Pasar, Lapangan",
+                    "Sistem: Solar street lighting + biopori",
+                    "Tahap pembangunan: 2025–2028"
+                ],
+                client: "Kementerian Desa PDTT & Pemda Sulteng"
+            }
+        ];
+        
+        // Show Project Modal
+        function showProjectModal(index) {
+            const project = projects[index];
+            const modal = document.getElementById('project-modal');
+            const content = document.getElementById('modal-content');
+            
+            content.innerHTML = `
+                <div class="relative">
+                    <!-- Image Header -->
+                    <div class="relative h-[420px] md:h-[480px]">
+                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90"></div>
+                        
+                        <div class="absolute top-8 left-8 flex gap-x-3">
+                            <div class="bg-black/70 text-xs tracking-widest px-5 py-2 rounded-full border border-white/20">${project.category}</div>
+                            <div class="bg-black/70 text-xs tracking-widest px-5 py-2 rounded-full border border-white/20">${project.year}</div>
+                        </div>
+                        
+                        <div class="absolute bottom-8 left-8 right-8">
+                            <div class="max-w-2xl">
+                                <h2 class="heading-serif text-white text-5xl md:text-6xl tracking-tighter">${project.title}</h2>
+                                <div class="flex items-center gap-x-3 mt-3 text-white/90">
+                                    <i class="fas fa-map-marker-alt text-amber-400"></i>
+                                    <span>${project.location}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8 md:p-10 grid md:grid-cols-12 gap-x-8">
+                        <!-- Description -->
+                        <div class="md:col-span-7">
+                            <div class="uppercase tracking-[2.5px] text-xs text-amber-400 mb-3">DESKRIPSI PROYEK</div>
+                            <p class="text-lg text-zinc-300 leading-relaxed">${project.desc}</p>
+                            
+                            <div class="mt-8">
+                                <div class="uppercase tracking-[2.5px] text-xs text-amber-400 mb-4">SPESIFIKASI TEKNIS</div>
+                                <div class="grid grid-cols-1 gap-y-3 text-sm">
+                                    ${project.specs.map(spec => `
+                                        <div class="flex items-start gap-x-3">
+                                            <i class="fas fa-check-circle text-emerald-400 mt-1"></i>
+                                            <span class="text-zinc-300">${spec}</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sidebar Info -->
+                        <div class="md:col-span-5 mt-10 md:mt-0">
+                            <div class="bg-zinc-950 border border-white/10 rounded-3xl p-7">
+                                <div class="text-xs tracking-widest text-zinc-400">KLIEN</div>
+                                <div class="font-semibold text-lg mt-1">${project.client}</div>
+                                
+                                <div class="h-px bg-white/10 my-6"></div>
+                                
+                                <div class="flex justify-between text-sm">
+                                    <div>
+                                        <div class="text-xs text-zinc-400">TAHUN</div>
+                                        <div class="font-medium">${project.year}</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs text-zinc-400">STATUS</div>
+                                        <div class="font-medium text-emerald-400">SELESAI</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button onclick="hideProjectModal(); showConsultModal();" 
+                                    class="mt-5 w-full py-4 bg-white text-zinc-950 font-bold tracking-wider text-sm rounded-2xl flex items-center justify-center gap-x-2 hover:bg-amber-400 hover:text-zinc-950 transition">
+                                <span>MINTA PENAWARAN SERUPA</span>
+                            </button>
+                            
+                            <button onclick="hideProjectModal()" 
+                                    class="mt-3 w-full py-4 border border-white/30 text-sm tracking-wider hover:bg-white/5 transition rounded-2xl">
+                                TUTUP
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hideProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+        
+        // Consultation Modal
+        let consultModal = null;
+        
+        function showConsultModal() {
+            consultModal = document.getElementById('consult-modal');
+            consultModal.classList.remove('hidden');
+            consultModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function hideConsultModal() {
+            if (consultModal) {
+                consultModal.classList.remove('flex');
+                consultModal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function submitConsultation(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('button[type="submit"]');
+            const originalHTML = btn.innerHTML;
+            
+            btn.innerHTML = `<span class="flex items-center justify-center gap-x-3"><i class="fas fa-spinner fa-spin"></i> MENGIRIM...</span>`;
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = `<span class="flex items-center justify-center gap-x-3 text-emerald-400"><i class="fas fa-check-circle"></i> PERMINTAAN TERKIRIM!</span>`;
+                
+                setTimeout(() => {
+                    hideConsultModal();
+                    
+                    // Success notification
+                    const notif = document.createElement('div');
+                    notif.className = `fixed bottom-8 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-x-4 z-[200]`;
+                    notif.innerHTML = `
+                        <div>
+                            <div class="font-semibold">Terima kasih! Permintaan konsultasi Anda telah diterima.</div>
+                            <div class="text-xs opacity-90 mt-0.5">Tim Asindu akan menghubungi Anda dalam 1x24 jam.</div>
+                        </div>
+                    `;
+                    document.body.appendChild(notif);
+                    
+                    setTimeout(() => {
+                        notif.style.transition = 'all 0.4s ease';
+                        notif.style.opacity = '0';
+                        notif.style.transform = 'translate(-50%, 30px)';
+                        setTimeout(() => notif.remove(), 450);
+                    }, 4800);
+                    
+                    form.reset();
+                    btn.innerHTML = originalHTML;
+                    btn.disabled = false;
+                }, 1450);
+            }, 2100);
+        }
+        
+        // Keyboard shortcuts
+        function initKeyboard() {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    const projectModal = document.getElementById('project-modal');
+                    const consultModal = document.getElementById('consult-modal');
+                    
+                    if (!projectModal.classList.contains('hidden')) {
+                        hideProjectModal();
+                    } else if (!consultModal.classList.contains('hidden')) {
+                        hideConsultModal();
+                    }
+                }
+                
+                if (e.key.toLowerCase() === '?' && document.activeElement.tagName === 'BODY') {
+                    e.preventDefault();
+                    const proyek = document.getElementById('proyek');
+                    proyek.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+            
+            // Easter egg: type "asindu" anywhere
+            let typed = '';
+            document.addEventListener('keypress', (e) => {
+                typed += e.key.toLowerCase();
+                if (typed.length > 6) typed = typed.slice(-6);
+                if (typed === 'asindu') {
+                    const logo = document.querySelector('.fa-cube');
+                    if (logo) {
+                        logo.style.transform = 'rotate(360deg) scale(1.4)';
+                        setTimeout(() => { if (logo) logo.style.transform = ''; }, 900);
+                    }
+                    typed = '';
+                }
+            });
+        }
+        
+        // Smooth scroll for all internal links
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        const offset = 80;
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementPosition = target.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition - bodyRect - offset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Counter animation for stats
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        stats.forEach(stat => {
+                            const target = parseInt(stat.textContent);
+                            let current = 0;
+                            const increment = Math.ceil(target / 45);
+                            
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= target) {
+                                    stat.textContent = target;
+                                    clearInterval(timer);
+                                } else {
+                                    stat.textContent = current;
+                                }
+                            }, 40);
+                        });
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.6 });
+            
+            const statsSection = document.querySelector('.bg-zinc-900.border-b');
+            if (statsSection) observer.observe(statsSection);
+        }
+        
+        // Initialize everything
+        function initializeWebsite() {
+            initTailwind();
+            initNavbar();
+            initKeyboard();
+            initSmoothScroll();
+            animateStats();
+            
+            // Random subtle effect on hero
+            const hero = document.querySelector('header');
+            if (hero) {
+                setTimeout(() => {
+                    hero.style.transition = 'filter 1.5s ease';
+                }, 800);
+            }
+            
+            console.log('%c[ASINDU] Website Engineering Consultant siap. Tekan "?" untuk scroll ke proyek.', 'color:#666');
+        }
+        
+        window.onload = initializeWebsite;
+    </script>
+</body>
+</html>
